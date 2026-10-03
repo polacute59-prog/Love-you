@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love You Nahida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .love-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* লেখার পালস (Pulse) অ্যানিমেশন */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ছোট ছোট ভাসমান লাভ (Heart) অ্যানিমেশন স্টাইল */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg) scale(1.4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="love-text">Love you Nahida ❤️</h1>
+    </div>
+
+    <script>
+        // ছোট ছোট লাভ তৈরি করার ফাংশন
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // বিভিন্ন সাইজ ও টাইপের হার্ট ইমোজি
+            const hearts = ['❤️', '💖', '💕', '💗', '💓'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // স্ক্রিনের যেকোনো র্যান্ডম জায়গা থেকে উঠবে
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // র্যান্ডম সাইজ
+            const size = Math.random() * 20 + 15;
+            heart.style.fontSize = size + 'px';
+            
+            // র্যান্ডম স্পিড (অ্যানিমেশনের সময়)
+            const duration = Math.random() * 3 + 3;
+            heart.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(heart);
+            
+            // অ্যানিমেশন শেষ হলে উপাদানটি মুছে ফেলা
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // প্রতি ৩০০ মিলি-সেকেন্ডে একটি করে নতুন লাভ তৈরি হবে
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
